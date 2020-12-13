@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using RPG2.Combat;
 
 namespace RPG2.Movement
 {
@@ -10,16 +11,19 @@ namespace RPG2.Movement
     {
         [SerializeField] Transform target;
 
+
+        NavMeshAgent navMeshAgent;
+
         // Update is called once per frame
         void Update()
         {
-            // if (Input.GetMouseButton(0))
-            // {
-            //     MoveToCursor();
-            // }
-
             UpdateAnimator();
         }
+
+        public void Start()
+            {
+                navMeshAgent = GetComponent<NavMeshAgent>();
+            }
 
         private void MoveToCursor()
         {
@@ -36,7 +40,8 @@ namespace RPG2.Movement
 
         public void MoveTo(Vector3 destination)
         {
-            GetComponent<NavMeshAgent>().destination = destination;
+            navMeshAgent.destination = destination;
+            navMeshAgent.isStopped = false;
         }
 
         private void UpdateAnimator()
@@ -45,6 +50,13 @@ namespace RPG2.Movement
             Vector3 localVelocity = transform.InverseTransformDirection(velocity);
             float speed = localVelocity.z;
             GetComponent<Animator>().SetFloat("forwardSpeed", speed);
+        }
+
+        
+
+        public void Stop()
+        {
+            navMeshAgent.isStopped = true;
         }
     }
 }
