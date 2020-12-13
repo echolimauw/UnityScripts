@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 namespace RPG2.Movement
-
+{
 
     public class Mover : MonoBehaviour
     {
@@ -29,7 +29,7 @@ namespace RPG2.Movement
             bool hasHit = Physics.Raycast(ray, out hit);
             if (hasHit)
             {
-            
+
                 MoveTo(hit.point);
             }
         }
@@ -47,3 +47,4 @@ namespace RPG2.Movement
             GetComponent<Animator>().SetFloat("forwardSpeed", speed);
         }
     }
+}

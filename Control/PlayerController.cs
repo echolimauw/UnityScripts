@@ -12,6 +12,7 @@ namespace RPG2.Control
     {
         public void Update()
         {
+            InteractWithCombat();
             InteractWithMovement();
         }
 
@@ -20,12 +21,12 @@ namespace RPG2.Control
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             foreach (RaycastHit hit in hits)
             {
-                CombatTarget target = hit.transform.GetComponent<CombatTarget>;
+                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
                 if (target == null) continue;
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    GetComponent<Fighter>().Attack();
+                    GetComponent<Fighter>().Attack(target);
                 }
                 
                 
