@@ -38,6 +38,14 @@ namespace RPG2.Movement
             }
         }
 
+        public void StartMoveAction(Vector3 destination)
+        {
+
+            GetComponent<Fighter>().Cancel();
+            MoveTo(destination);
+
+        }
+
         public void MoveTo(Vector3 destination)
         {
             navMeshAgent.destination = destination;

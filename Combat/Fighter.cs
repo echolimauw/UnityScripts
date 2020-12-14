@@ -14,8 +14,11 @@ namespace RPG2.Combat
         
         private void Update()
         {
-            bool isInRange = Vector3.Distance(transform.position, target.position) < weaponRange;
-            if (target != null && !isInRange)
+            bool isInRange = GetIsInRange();
+
+            if (target == null) return;
+
+            if (target != null && !GetIsInRange())
             {
                 GetComponent<Mover>().MoveTo(target.position);
             }
@@ -25,10 +28,21 @@ namespace RPG2.Combat
             }
         }
 
+        private bool GetIsInRange()
+        {
+            return Vector3.Distance(transform.position, target.position) < weaponRange;
+        }
+
         public void Attack(CombatTarget combatTarget)
         {
             target = combatTarget.transform;
             print("Take that!");
         }
+
+        public void Cancel()
+        {
+            target = null;
+        }
+
     }
 }
