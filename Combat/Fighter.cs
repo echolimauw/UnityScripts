@@ -15,8 +15,6 @@ namespace RPG2.Combat
 
         private void Update()
         {
-            bool isInRange = GetIsInRange();
-
             if (target == null) return;
 
             if (target != null && !GetIsInRange())

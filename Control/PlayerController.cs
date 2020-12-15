@@ -43,7 +43,7 @@ namespace RPG2.Control
             Ray ray = GetMouseRay();
 
             RaycastHit hit;
-            bool hasHit = Physics.Raycast(ray, out hit);
+            bool hasHit = Physics.Raycast(GetMouseRay(), out hit);
             
             if (hasHit)
             {
