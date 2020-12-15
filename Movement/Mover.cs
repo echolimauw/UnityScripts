@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using RPG2.Combat;
+using RPG2.Core;
 
 namespace RPG2.Movement
 {
@@ -40,7 +41,7 @@ namespace RPG2.Movement
 
         public void StartMoveAction(Vector3 destination)
         {
-
+            GetComponent<ActionScheduler>().StartAction(this);
             GetComponent<Fighter>().Cancel();
             MoveTo(destination);
 
@@ -54,7 +55,7 @@ namespace RPG2.Movement
 
         private void UpdateAnimator()
         {
-            Vector3 velocity = GetComponent<NavMeshAgent>().velocity;
+            Vector3 velocity = navMeshAgent.velocity;
             Vector3 localVelocity = transform.InverseTransformDirection(velocity);
             float speed = localVelocity.z;
             GetComponent<Animator>().SetFloat("forwardSpeed", speed);
