@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using RPG2.Combat;
 using RPG2.Core;
 
 namespace RPG2.Movement
 {
 
-    public class Mover : MonoBehaviour
+    public class Mover : MonoBehaviour, IAction
     {
         [SerializeField] Transform target;
 
@@ -42,7 +41,6 @@ namespace RPG2.Movement
         public void StartMoveAction(Vector3 destination)
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            GetComponent<Fighter>().Cancel();
             MoveTo(destination);
 
         }
@@ -61,9 +59,7 @@ namespace RPG2.Movement
             GetComponent<Animator>().SetFloat("forwardSpeed", speed);
         }
 
-        
-
-        public void Stop()
+        public void Cancel()
         {
             navMeshAgent.isStopped = true;
         }

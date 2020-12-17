@@ -23,7 +23,7 @@ namespace RPG2.Combat
             }
             else
             {
-                GetComponent<Mover>().Stop();
+                GetComponent<Mover>().Cancel();
             }
         }
 
