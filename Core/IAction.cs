@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG2.Core
 {
-    public interface IAction()
+    public interface IAction
     {
         void Cancel();
     }
