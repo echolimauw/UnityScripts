@@ -7,7 +7,7 @@ using RPG2.Core;
 
 namespace RPG2.Combat
 {
-    public class Fighter : MonoBehaviour
+    public class Fighter : MonoBehaviour, IAction
     {
         [SerializeField] float weaponRange = 2f;
 
@@ -24,7 +24,13 @@ namespace RPG2.Combat
             else
             {
                 GetComponent<Mover>().Cancel();
+                AttackBehavior();
             }
+        }
+
+        private void AttackBehavior()
+        {
+            GetComponent<Animator>().SetTrigger("attack");
         }
 
         private bool GetIsInRange()
@@ -42,6 +48,12 @@ namespace RPG2.Combat
         public void Cancel()
         {
             target = null;
+        }
+
+        /* Animator Event*/
+        void Hit()
+        {
+
         }
 
     }
